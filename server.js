@@ -2,15 +2,14 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
-// Serve static files (like index.html)
-app.use(express.static(path.join(__dirname)));
+// Serve static files from the "vcf-web" folder
+app.use(express.static(path.join(__dirname, "vcf-web")));
 
-// Default route
+// Serve index.html for the root path
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "vcf-web", "index.html"));
 });
 
-// For Heroku deployment
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
